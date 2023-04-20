@@ -1,5 +1,8 @@
 package com.hotel.hotelreservationsystem.model;
 
+import com.hotel.hotelreservationsystem.dto.BookingDTO;
+import com.hotel.hotelreservationsystem.dto.RoomDTO;
+import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Room {
+public class Room implements DTOMapper<RoomDTO> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,4 +30,13 @@ public class Room {
     @JoinColumn(name = "room_type_id")
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private RoomType roomType;
+
+    @Override
+    public RoomDTO mapToDTO() {
+        return new RoomDTO(
+                this.id,
+                this.number,
+                this.roomType.getId()
+        );
+    }
 }

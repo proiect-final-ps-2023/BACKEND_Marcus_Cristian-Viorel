@@ -1,5 +1,8 @@
 package com.hotel.hotelreservationsystem.model;
 
+import com.hotel.hotelreservationsystem.dto.BookingDTO;
+import com.hotel.hotelreservationsystem.dto.UserDTO;
+import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Builder
-public class User {
+public class User implements DTOMapper<UserDTO> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +33,14 @@ public class User {
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "id")
     private List<Booking> bookings;
+
+    @Override
+    public UserDTO mapToDTO() {
+        return new UserDTO(
+                this.id,
+                this.name,
+                this.pass,
+                this.isAdmin
+        );
+    }
 }
