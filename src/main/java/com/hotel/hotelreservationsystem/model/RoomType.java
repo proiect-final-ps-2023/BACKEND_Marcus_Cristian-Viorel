@@ -28,7 +28,7 @@ public class RoomType implements DTOMapper<RoomTypeDTO> {
 
     private String description;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "id")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "roomType")
     private List<Room> rooms;
 
     @Override

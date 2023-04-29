@@ -13,7 +13,11 @@ public interface RoomService {
 
     Room findRoomById(Long id);
 
+    Room findRoomByNumber(Integer roomNumber);
+
     List<Room> getAllRooms();
+
+    List<Room> getAllRoomsWithRoomTypes();
 
     Room updateRoom(Room room);
 

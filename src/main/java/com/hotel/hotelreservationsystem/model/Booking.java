@@ -21,6 +21,7 @@ public class Booking implements DTOMapper<BookingDTO> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // YYYY-MM-DD format!
     @Column(name = "check_in_date", nullable = false)
     private Date checkInDate;
 

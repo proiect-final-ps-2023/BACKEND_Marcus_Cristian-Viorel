@@ -26,6 +26,8 @@ public interface UserService {
     Boolean isAdmin(User user);
 
     // regular user operations
+    Boolean listRooms(RoomRepository roomRepository, RoomTypeRepository roomTypeRepository);
+
     Boolean addBooking(Booking booking, BookingRepository bookingRepository);
     Boolean removeBooking(Booking booking, BookingRepository bookingRepository);
     Boolean updateBooking(Booking booking, BookingRepository bookingRepository);

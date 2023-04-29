@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 public class UserDTO extends DTO {
 
     private Long id;
-    private String username;
-    private String password;
+    private String name;
+    private String pass;
     private Boolean isAdmin;
 
     @Override
     public String toString() {
-        return "UserDTO [id=" + id + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + "]";
+        return "UserDTO [id=" + id + ", username=" + name + ", password=" + pass + ", isAdmin=" + isAdmin + "]";
     }
 }

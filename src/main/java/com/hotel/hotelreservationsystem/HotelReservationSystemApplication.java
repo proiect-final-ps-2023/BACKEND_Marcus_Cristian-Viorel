@@ -64,13 +64,15 @@ public class HotelReservationSystemApplication {
             // Create guest data
             GuestData guestData1 = GuestData.builder().name("Criste Cosmin").email("email1@gmail.com").phone("0722222222").address("Strada Ceahlau").build();
             GuestData guestData2 = GuestData.builder().name("Martis Xonia").email("email2@yahoo.com").phone("0733333333").address("Strada Peana").build();
-            List<GuestData> guestData = List.of(guestData1, guestData2);
+            GuestData guestData3 = GuestData.builder().name("Popescu Ion").email("popescu@hotmal.com").phone("0744444444").address("Strada Mihai Viteazul").build();
+            List<GuestData> guestData = List.of(guestData3, guestData1, guestData2);
             guestDataRepository.saveAll(guestData);
 
             // Create guests
             Guest guest1 = Guest.builder().guestData(guestData1).booking(booking1).room(room1).build();
             Guest guest2 = Guest.builder().guestData(guestData2).booking(booking2).room(room2).build();
-            List<Guest> guests = List.of(guest1, guest2);
+            Guest guest3 = Guest.builder().guestData(guestData3).booking(booking2).room(room3).build();
+            List<Guest> guests = List.of(guest3, guest1, guest2);
             guestRepository.saveAll(guests);
 
 

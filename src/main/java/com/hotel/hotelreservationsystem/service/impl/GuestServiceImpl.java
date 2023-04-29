@@ -1,6 +1,7 @@
 package com.hotel.hotelreservationsystem.service.impl;
 
 import com.hotel.hotelreservationsystem.model.Guest;
+import com.hotel.hotelreservationsystem.repository.GuestDataRepository;
 import com.hotel.hotelreservationsystem.repository.GuestRepository;
 import com.hotel.hotelreservationsystem.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class GuestServiceImpl implements GuestService {
 
     @Autowired
     private GuestRepository guestRepository;
+
+    @Autowired
+    private GuestDataRepository guestDataRepository;
 
     public GuestServiceImpl(GuestRepository guestRepository) {
         this.guestRepository = guestRepository;
@@ -31,6 +35,11 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public List<Guest> getAllGuests() {
         return (List<Guest>) guestRepository.findAll();
+    }
+
+    @Override
+    public List<Guest> getAllGuestsWithGuestData() {
+        return (List<Guest>) guestRepository.getAllGuestsWithGuestData();
     }
 
     @Override

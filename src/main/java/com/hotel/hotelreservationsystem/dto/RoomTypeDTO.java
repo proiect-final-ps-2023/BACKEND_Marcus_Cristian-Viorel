@@ -13,11 +13,11 @@ public class RoomTypeDTO extends DTO {
 
     private Long id;
     private String name;
-    private Double price;
+    private Double cost;
     private String description;
 
     @Override
     public String toString() {
-        return "RoomTypeDTO [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + "]";
+        return "RoomTypeDTO [id=" + id + ", name=" + name + ", price=" + cost + ", description=" + description + "]";
     }
 }

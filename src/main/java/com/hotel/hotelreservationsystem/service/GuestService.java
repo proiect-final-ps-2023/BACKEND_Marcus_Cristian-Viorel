@@ -15,6 +15,8 @@ public interface GuestService {
 
     List<Guest> getAllGuests();
 
+    List<Guest> getAllGuestsWithGuestData();
+
     Guest updateGuest(Guest guest);
 
     Guest deleteGuest(Guest guest);

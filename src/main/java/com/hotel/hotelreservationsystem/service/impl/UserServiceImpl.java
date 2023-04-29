@@ -42,6 +42,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User deleteUser(User user) {
+        if(userRepository.findById(user.getId()).orElse(null) == null) {
+            return null;
+        }
+
         userRepository.delete(user);
         return user;
     }
@@ -61,6 +65,21 @@ public class UserServiceImpl implements UserService {
     }
 
     // regular user operations
+    @Override
+    public Boolean listRooms(RoomRepository roomRepository, RoomTypeRepository roomTypeRepository) {
+/*
+        List<Room> rooms = (List<Room>) roomRepository.findAll();
+        if(rooms.isEmpty()) {
+            return false;
+        } else {
+            for(Room room : rooms) {
+                System.out.println(room.toString());
+            }
+            return true;
+        }*/
+        return true;
+    }
+
     @Override
     public Boolean addBooking(Booking booking, BookingRepository bookingRepository) {
         bookingRepository.save(booking);

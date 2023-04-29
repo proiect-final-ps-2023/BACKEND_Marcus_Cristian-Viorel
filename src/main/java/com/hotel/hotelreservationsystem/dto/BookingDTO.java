@@ -12,8 +12,10 @@ import java.util.Date;
 public class BookingDTO extends DTO{
 
     private Long id;
+    // YYYY-MM-DD format!
     private Date checkInDate;
     private Date checkOutDate;
+
     private Double total;
     private Boolean isPaid;
     private Long userId;
