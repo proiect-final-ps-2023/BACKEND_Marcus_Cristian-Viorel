@@ -44,6 +44,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> getAllVacantRooms() {
+        return (List<Room>) roomRepository.getAllVacantRooms();
+    }
+
+    @Override
     public Room updateRoom(Room room) {
         return roomRepository.save(room);
     }

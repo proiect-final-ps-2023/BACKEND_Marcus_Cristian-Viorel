@@ -8,8 +8,10 @@ import com.hotel.hotelreservationsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+/*    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;*/
 
     @RequestMapping("/findAll")
     public List<UserDTO> findAll() {
@@ -36,6 +41,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody User user) {
         try {
@@ -45,9 +51,12 @@ public class UserController {
             }
 
             UserDTO foundUserDTO = foundUser.mapToDTO();
+            foundUser.setLastLogin(new Date());
+            userService.updateUser(foundUser);
             if(!(foundUserDTO.getName().equals(user.getName()) && foundUserDTO.getPass().equals(user.getPass()))) {
                 throw new Exception("Invalid credentials");
             }
+
             return ResponseEntity.status(HttpStatus.OK).body(foundUserDTO);
         } catch(Exception e) {
             System.out.println(e.getMessage());
@@ -75,4 +84,10 @@ public class UserController {
     public void add(@RequestBody User user) {
         userService.createUser(user);
     }
+
+/*    @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
+    @PutMapping("/sendMessage")
+    public void sendMessage(@RequestBody String message) {
+        simpMessagingTemplate.convertAndSend("/topic/popup", message);
+    }*/
 }

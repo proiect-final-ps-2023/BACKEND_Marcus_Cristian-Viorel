@@ -4,6 +4,7 @@ import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.RoomTypeDTO;
 import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class RoomType implements DTOMapper<RoomTypeDTO> {
 
     private String name;
 
+    @Min(value = 1, message = "Cost must be greater than 0")
     private Double cost;
 
     private String description;

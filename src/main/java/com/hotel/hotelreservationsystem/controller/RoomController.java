@@ -71,7 +71,6 @@ public class RoomController {
                 .findFirst()
                 .orElse(null);
 
-        /*System.out.println("Room: " + room.getId() + " " + room.getNumber() + " " + room.getRoomType().getId() + " " + room.getRoomType().getName() + " " + room.getRoomType().getCost());*/
         room.setNumber(number);
 
         RoomType roomType = roomTypeService.findRoomTypeById(roomTypeId);
@@ -89,5 +88,13 @@ public class RoomController {
         }
 
         return room.mapToDTO();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
+    @GetMapping("/findAllVacantWithRoomTypes")
+    public List<RoomWithRoomTypeDTO> findAllVacantWithRoomTypes() {
+        return roomService.getAllVacantRooms().stream()
+                .map(RoomWithRoomTypeDTO::mapToDTO)
+                .toList();
     }
 }

@@ -19,6 +19,8 @@ public interface RoomService {
 
     List<Room> getAllRoomsWithRoomTypes();
 
+    List<Room> getAllVacantRooms();
+
     Room updateRoom(Room room);
 
     Room deleteRoom(Room room);

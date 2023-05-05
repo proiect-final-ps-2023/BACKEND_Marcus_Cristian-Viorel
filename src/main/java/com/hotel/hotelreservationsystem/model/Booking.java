@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -21,10 +22,11 @@ public class Booking implements DTOMapper<BookingDTO> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // YYYY-MM-DD format!
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     @Column(name = "check_in_date", nullable = false)
     private Date checkInDate;
 
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     @Column(name = "check_out_date", nullable = false)
     private Date checkOutDate;
 

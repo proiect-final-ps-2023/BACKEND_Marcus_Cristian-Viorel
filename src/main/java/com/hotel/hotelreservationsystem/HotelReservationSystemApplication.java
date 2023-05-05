@@ -36,23 +36,25 @@ public class HotelReservationSystemApplication {
         return args -> {
 
             // Create users
-            User user1 = User.builder().name("Marin Alexandra").pass("pass1").isAdmin(false).build();
-            User user2 = User.builder().name("Pop Cristian").pass("pass2").isAdmin(true).build();
+            User user1 = User.builder().name("marin_alexandra").pass("pisicute123").isAdmin(false).build();
+            User user2 = User.builder().name("popcristian13").pass("haisteaua01").isAdmin(true).build();
             List<User> users = List.of(user1, user2);
             userRepository.saveAll(users);
 
             // Create room types
-            RoomType roomType1 = RoomType.builder().name("Single").cost(100.0).description("Single room").build();
-            RoomType roomType2 = RoomType.builder().name("Double").cost(200.0).description("Double room").build();
-            RoomType roomType3 = RoomType.builder().name("Triple").cost(300.0).description("Triple room").build();
+            RoomType roomType1 = RoomType.builder().name("Standard").cost(100.0).description("1 king bed room with city view + balcony").build();
+            RoomType roomType2 = RoomType.builder().name("Executive").cost(500.0).description("1 king bed room with beach view + balcony").build();
+            RoomType roomType3 = RoomType.builder().name("Standard Twin Room").cost(150.0).description("2 Twin bed room").build();
             List<RoomType> roomTypes = List.of(roomType1, roomType2, roomType3);
             roomTypeRepository.saveAll(roomTypes);
 
             // Create rooms
-            Room room1 = Room.builder().roomType(roomType1).number(14).build();
+            Room room1 = Room.builder().roomType(roomType1).number(19).build();
             Room room2 = Room.builder().roomType(roomType2).number(13).build();
             Room room3 = Room.builder().roomType(roomType3).number(10).build();
-            List<Room> rooms = List.of(room1, room2, room3);
+            Room room4 = Room.builder().roomType(roomType2).number(23).build();
+            Room room5 = Room.builder().roomType(roomType3).number(50).build();
+            List<Room> rooms = List.of(room1, room3, room2, room4, room5);
             roomRepository.saveAll(rooms);
 
             // Create bookings
@@ -62,9 +64,9 @@ public class HotelReservationSystemApplication {
             bookingRepository.saveAll(bookings);
 
             // Create guest data
-            GuestData guestData1 = GuestData.builder().name("Criste Cosmin").email("email1@gmail.com").phone("0722222222").address("Strada Ceahlau").build();
-            GuestData guestData2 = GuestData.builder().name("Martis Xonia").email("email2@yahoo.com").phone("0733333333").address("Strada Peana").build();
-            GuestData guestData3 = GuestData.builder().name("Popescu Ion").email("popescu@hotmal.com").phone("0744444444").address("Strada Mihai Viteazul").build();
+            GuestData guestData1 = GuestData.builder().name("Criste Cosmin").email("criste_cosmin@gmail.com").phone("0724351786").address("Strada Ceahlau").build();
+            GuestData guestData2 = GuestData.builder().name("Martis Xonia").email("martisssimona@yahoo.com").phone("0742363685").address("Strada Peana").build();
+            GuestData guestData3 = GuestData.builder().name("Popescu Ion").email("ion-pop@hotmal.com").phone("0743928567").address("Strada Mihai Viteazul").build();
             List<GuestData> guestData = List.of(guestData3, guestData1, guestData2);
             guestDataRepository.saveAll(guestData);
 

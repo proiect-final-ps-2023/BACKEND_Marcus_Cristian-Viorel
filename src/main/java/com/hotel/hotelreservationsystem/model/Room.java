@@ -4,6 +4,7 @@ import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.RoomDTO;
 import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Room implements DTOMapper<RoomDTO> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Min(value = 1, message = "Room number must be greater than 0")
     private int number;
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "id")
