@@ -3,8 +3,6 @@ package com.hotel.hotelreservationsystem.controller;
 import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.export.BookingXMLExporter;
 import com.hotel.hotelreservationsystem.model.Booking;
-import com.hotel.hotelreservationsystem.model.Guest;
-import com.hotel.hotelreservationsystem.model.RoomType;
 import com.hotel.hotelreservationsystem.service.BookingService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +42,7 @@ public class BookingController {
             throw new IllegalArgumentException("Booking with id " + id + " does not exist");
         }
 
-        Booking boooking = bookingService.deleteBooking(bookingService.findBookingById(id));
+        bookingService.deleteBooking(bookingService.findBookingById(id));
     }
 
     @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
@@ -55,18 +52,6 @@ public class BookingController {
         bookingService.createBooking(booking);
     }
 
-/*    @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
-    @PutMapping("/update/{id}/{name}/{cost}/{description}")
-    public void update(@PathVariable Long id, @PathVariable String name, @PathVariable Double cost, @PathVariable String description) {
-        RoomType roomType = roomTypeService.findRoomTypeById(id);
-        roomType.setName(name);
-        roomType.setCost(cost);
-        roomType.setDescription(description);
-
-        roomTypeService.updateRoomType(roomType);
-    }*/
-
-    // userId (the creator of the booking) is not updated
     @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
     @PutMapping("/update/{id}/{checkInDate}/{checkOutDate}/{total}/{isPaid}")
     public void update(@PathVariable Long id, @PathVariable String checkInDate, @PathVariable String checkOutDate, @PathVariable Double total, @PathVariable Boolean isPaid) {

@@ -2,12 +2,10 @@ package com.hotel.hotelreservationsystem.service.impl;
 
 import com.hotel.hotelreservationsystem.model.*;
 import com.hotel.hotelreservationsystem.repository.*;
-import com.hotel.hotelreservationsystem.service.BookingService;
 import com.hotel.hotelreservationsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @Service
@@ -22,7 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+        User createdUser = userRepository.save(user);
+        createdUser.setPass(createdUser.getHashedPass());
+        return userRepository.save(createdUser);
     }
 
     @Override
@@ -52,9 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String name, String hashedPass) {
-        System.out.println("name: " + name + " hashedPass: " + hashedPass);
-        User user = userRepository.findByNameAndHashedPass(name, hashedPass).orElse(null);
-        return user;
+        return userRepository.findByNameAndHashedPass(name, hashedPass).orElse(null);
     }
 
     @Override
@@ -63,22 +61,6 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         return user.getIsAdmin();
-    }
-
-    // regular user operations
-    @Override
-    public Boolean listRooms(RoomRepository roomRepository, RoomTypeRepository roomTypeRepository) {
-/*
-        List<Room> rooms = (List<Room>) roomRepository.findAll();
-        if(rooms.isEmpty()) {
-            return false;
-        } else {
-            for(Room room : rooms) {
-                System.out.println(room.toString());
-            }
-            return true;
-        }*/
-        return true;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.hotel.hotelreservationsystem.export;
 
 import com.hotel.hotelreservationsystem.dto.BookingDTO;
-import com.hotel.hotelreservationsystem.model.Booking;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,5 @@
 package com.hotel.hotelreservationsystem.model;
 
-import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.RoomDTO;
 import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;

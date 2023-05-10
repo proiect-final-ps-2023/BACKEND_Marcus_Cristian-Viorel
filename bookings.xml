@@ -40,4 +40,12 @@
         <total>1140.0</total>
         <userId>1</userId>
     </booking>
+    <booking>
+        <checkInDate>2024-10-10T03:00:00+03:00</checkInDate>
+        <checkOutDate>2025-10-10T03:00:00+03:00</checkOutDate>
+        <id>6</id>
+        <isPaid>true</isPaid>
+        <total>123.0</total>
+        <userId>3</userId>
+    </booking>
 </bookings>

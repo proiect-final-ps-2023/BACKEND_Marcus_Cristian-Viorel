@@ -4,7 +4,6 @@ import com.hotel.hotelreservationsystem.model.*;
 import com.hotel.hotelreservationsystem.repository.*;
 import org.springframework.stereotype.Component;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @Component
@@ -26,7 +25,6 @@ public interface UserService {
     Boolean isAdmin(User user);
 
     // regular user operations
-    Boolean listRooms(RoomRepository roomRepository, RoomTypeRepository roomTypeRepository);
 
     Boolean addBooking(Booking booking, BookingRepository bookingRepository);
     Boolean removeBooking(Booking booking, BookingRepository bookingRepository);

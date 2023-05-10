@@ -2,8 +2,6 @@ package com.hotel.hotelreservationsystem.controller;
 
 import com.hotel.hotelreservationsystem.dto.GuestDataDTO;
 import com.hotel.hotelreservationsystem.model.GuestData;
-import com.hotel.hotelreservationsystem.model.Room;
-import com.hotel.hotelreservationsystem.model.RoomType;
 import com.hotel.hotelreservationsystem.service.GuestDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

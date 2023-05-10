@@ -1,24 +1,15 @@
 package com.hotel.hotelreservationsystem.controller;
 
-import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.UserDTO;
-import com.hotel.hotelreservationsystem.export.BookingXMLExporter;
-import com.hotel.hotelreservationsystem.model.Booking;
 import com.hotel.hotelreservationsystem.model.User;
-import com.hotel.hotelreservationsystem.service.BookingService;
 import com.hotel.hotelreservationsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
 
 @RestController
 @RequestMapping("/user")

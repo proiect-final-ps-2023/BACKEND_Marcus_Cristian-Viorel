@@ -1,6 +1,5 @@
 package com.hotel.hotelreservationsystem.model;
 
-import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.UserDTO;
 import com.hotel.hotelreservationsystem.mapper.DTOMapper;
 import jakarta.persistence.*;
@@ -45,11 +44,6 @@ public class User implements DTOMapper<UserDTO> {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(pass, this.hashedPass);
     }
-
-
-/*    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", message = "Password must contain at least 1 letter, and be at least 6 characters long")
-    @Column(nullable = false)
-    private String pass;*/
 
     @Column(nullable = false)
     private Boolean isAdmin;

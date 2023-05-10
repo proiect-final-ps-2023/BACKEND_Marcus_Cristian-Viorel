@@ -4,10 +4,8 @@ import com.hotel.hotelreservationsystem.dto.RoomDTO;
 import com.hotel.hotelreservationsystem.dto.RoomWithRoomTypeDTO;
 import com.hotel.hotelreservationsystem.model.Room;
 import com.hotel.hotelreservationsystem.model.RoomType;
-import com.hotel.hotelreservationsystem.model.User;
 import com.hotel.hotelreservationsystem.service.RoomService;
 import com.hotel.hotelreservationsystem.service.RoomTypeService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,6 @@ public class RoomController {
                 .toList();
     }
 
-    // TODO: atentie, aici sunt TOATE camerele, nu doar cele libere (deci e operatie pentru admini)
     @RequestMapping("/findAllWithRoomTypes")
     public List<RoomWithRoomTypeDTO> findAllWithRoomTypes() {
         return roomService.getAllRoomsWithRoomTypes().stream()
