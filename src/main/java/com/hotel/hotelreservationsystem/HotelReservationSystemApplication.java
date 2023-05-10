@@ -36,8 +36,12 @@ public class HotelReservationSystemApplication {
         return args -> {
 
             // Create users
-            User user1 = User.builder().name("marin_alexandra").pass("pisicute123").isAdmin(false).build();
-            User user2 = User.builder().name("popcristian13").pass("haisteaua01").isAdmin(true).build();
+            User user1 = User.builder().name("marin_alexandra").isAdmin(false).build();
+            user1.setPass("pisicute123");
+
+            User user2 = User.builder().name("popcristian13").isAdmin(true).build();
+            user2.setPass("haisteaua01");
+
             List<User> users = List.of(user1, user2);
             userRepository.saveAll(users);
 
@@ -59,8 +63,10 @@ public class HotelReservationSystemApplication {
 
             // Create bookings
             Booking booking1 = Booking.builder().checkInDate(new Date(2021 - 1900, Calendar.JUNE, 1)).checkOutDate(new Date(2021 - 1900, Calendar.JUNE, 5)).total(400.0).isPaid(false).user(user1).build();
-            Booking booking2 = Booking.builder().checkInDate(new Date(2013 - 1900, Calendar.DECEMBER, 21)).checkOutDate(new Date(2021 - 1900, Calendar.JUNE, 11)).total(530.0).isPaid(false).user(user2).build();
-            List<Booking> bookings = List.of(booking1, booking2);
+            Booking booking2 = Booking.builder().checkInDate(new Date(2013 - 1900, Calendar.DECEMBER, 21)).checkOutDate(new Date(2021 - 1900, Calendar.DECEMBER, 30)).total(530.0).isPaid(false).user(user2).build();
+            Booking booking3 = Booking.builder().checkInDate(new Date(2023 - 1900, Calendar.MARCH, 5)).checkOutDate(new Date(2023 - 1900, Calendar.MARCH, 5)).total(700.0).isPaid(false).user(user1).build();
+            Booking booking4 = Booking.builder().checkInDate(new Date(2024 - 1900, Calendar.SEPTEMBER, 14)).checkOutDate(new Date(2024 - 1900, Calendar.SEPTEMBER, 24)).total(950.0).isPaid(false).user(user2).build();
+            List<Booking> bookings = List.of(booking1, booking2, booking3, booking4);
             bookingRepository.saveAll(bookings);
 
             // Create guest data
@@ -85,7 +91,7 @@ public class HotelReservationSystemApplication {
             System.out.println("\nUsers:");
             userRepository.findAll().forEach(
                     user -> {
-                        System.out.println(user.getName() + " " + user.getPass() + " " + user.getIsAdmin());
+                        System.out.println(user.getName() + " " + user.getHashedPass() + " " + user.getIsAdmin());
                     }
             );
 

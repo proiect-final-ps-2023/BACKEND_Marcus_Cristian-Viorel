@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 import java.util.List;
@@ -28,9 +29,27 @@ public class User implements DTOMapper<UserDTO> {
     @Column(nullable = false)
     private String name;
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", message = "Password must contain at least 1 letter, and be at least 6 characters long")
     @Column(nullable = false)
-    private String pass;
+    private String hashedPass;
+
+    public void setPass(String pass) {
+        if (pass.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            this.hashedPass = encoder.encode(pass);
+        } else {
+            throw new IllegalArgumentException("Password must contain at least 1 letter, and be at least 6 characters long");
+        }
+    }
+
+    public boolean checkPass(String pass) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.matches(pass, this.hashedPass);
+    }
+
+
+/*    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", message = "Password must contain at least 1 letter, and be at least 6 characters long")
+    @Column(nullable = false)
+    private String pass;*/
 
     @Column(nullable = false)
     private Boolean isAdmin;
@@ -45,7 +64,7 @@ public class User implements DTOMapper<UserDTO> {
         return new UserDTO(
                 this.id,
                 this.name,
-                this.pass,
+                this.hashedPass,
                 this.isAdmin,
                 this.lastLogin
         );

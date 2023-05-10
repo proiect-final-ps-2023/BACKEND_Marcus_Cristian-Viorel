@@ -1,18 +1,24 @@
 package com.hotel.hotelreservationsystem.controller;
 
+import com.hotel.hotelreservationsystem.dto.BookingDTO;
 import com.hotel.hotelreservationsystem.dto.UserDTO;
-import com.hotel.hotelreservationsystem.model.Room;
-import com.hotel.hotelreservationsystem.model.RoomType;
+import com.hotel.hotelreservationsystem.export.BookingXMLExporter;
+import com.hotel.hotelreservationsystem.model.Booking;
 import com.hotel.hotelreservationsystem.model.User;
+import com.hotel.hotelreservationsystem.service.BookingService;
 import com.hotel.hotelreservationsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 @RestController
 @RequestMapping("/user")
@@ -20,9 +26,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-/*    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;*/
 
     @RequestMapping("/findAll")
     public List<UserDTO> findAll() {
@@ -45,7 +48,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody User user) {
         try {
-            User foundUser = userService.login(user.getName(), user.getPass());
+            User foundUser = userService.login(user.getName(), user.getHashedPass());
             if(foundUser == null) {
                 throw new Exception("Invalid credentials");
             }
@@ -53,7 +56,7 @@ public class UserController {
             UserDTO foundUserDTO = foundUser.mapToDTO();
             foundUser.setLastLogin(new Date());
             userService.updateUser(foundUser);
-            if(!(foundUserDTO.getName().equals(user.getName()) && foundUserDTO.getPass().equals(user.getPass()))) {
+            if(!(foundUserDTO.getName().equals(user.getName()) && foundUserDTO.getHashedPass().equals(user.getHashedPass()))) {
                 throw new Exception("Invalid credentials");
             }
 
@@ -84,10 +87,4 @@ public class UserController {
     public void add(@RequestBody User user) {
         userService.createUser(user);
     }
-
-/*    @CrossOrigin(origins = "http://localhost:4200") // CORS unblocking
-    @PutMapping("/sendMessage")
-    public void sendMessage(@RequestBody String message) {
-        simpMessagingTemplate.convertAndSend("/topic/popup", message);
-    }*/
 }

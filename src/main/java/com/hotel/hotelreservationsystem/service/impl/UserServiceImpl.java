@@ -51,8 +51,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(String name, String pass) {
-        User user = userRepository.findByNameAndPass(name, pass).orElse(null);
+    public User login(String name, String hashedPass) {
+        System.out.println("name: " + name + " hashedPass: " + hashedPass);
+        User user = userRepository.findByNameAndHashedPass(name, hashedPass).orElse(null);
         return user;
     }
 

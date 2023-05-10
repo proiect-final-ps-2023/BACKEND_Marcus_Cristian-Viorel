@@ -11,7 +11,6 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByName(String name);
-    Optional<User> findByNameAndPass(String name, String pass);
+    Optional<User> findByNameAndHashedPass(String name, String hashedPass);
     List<User> findAllByIsAdmin(Boolean isAdmin);
-
 }

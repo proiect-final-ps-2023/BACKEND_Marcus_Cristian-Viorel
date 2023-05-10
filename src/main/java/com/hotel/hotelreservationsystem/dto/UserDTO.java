@@ -13,12 +13,12 @@ public class UserDTO extends DTO {
 
     private Long id;
     private String name;
-    private String pass;
+    private String hashedPass;
     private Boolean isAdmin;
     private Date lastLogin;
 
     @Override
     public String toString() {
-        return "UserDTO [id=" + id + ", username=" + name + ", password=" + pass + ", isAdmin=" + isAdmin + ", lastLogin=" + lastLogin + "]";
+        return "UserDTO [id=" + id + ", username=" + name + ", password=" + hashedPass + ", isAdmin=" + isAdmin + ", lastLogin=" + lastLogin + "]";
     }
 }

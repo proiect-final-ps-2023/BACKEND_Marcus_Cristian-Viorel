@@ -21,12 +21,12 @@ public class UserServiceTest {
 
     private static final Long ID = 1L;
     private static final String NAME = "name";
-    private static final String PASS = "pass";
+    private static final String PASS = "password1";
     private static final Boolean IS_ADMIN = false;
 
     private static final Long ID_NOT = 2L;
     private static final String NAME_NOT = "name_not";
-    private static final String PASS_NOT = "pass_not";
+    private static final String PASS_NOT = "password_not1";
     private static final Boolean IS_ADMIN_NOT = true;
 
     private UserServiceImpl userService;
@@ -64,8 +64,8 @@ public class UserServiceTest {
         doNothing().when(userRepository).delete(user);
 
         // Login
-        when(userRepository.findByNameAndPass(NAME, PASS)).thenReturn(Optional.of(user));
-        when(userRepository.findByNameAndPass(NAME_NOT, PASS_NOT)).thenReturn(Optional.empty());
+        when(userRepository.findByNameAndHashedPass(NAME, PASS)).thenReturn(Optional.of(user));
+        when(userRepository.findByNameAndHashedPass(NAME_NOT, PASS_NOT)).thenReturn(Optional.empty());
 
         // Is admin
         when(userRepository.findById(ID)).thenReturn(Optional.of(user));
@@ -125,7 +125,7 @@ public class UserServiceTest {
     void testCreateUser() {
         User newUser = new User();
         newUser.setName("test");
-        newUser.setPass("testpass");
+        newUser.setPass("testpass1");
         newUser.setIsAdmin(false);
 
         when(userRepository.save(any(User.class))).thenReturn(newUser);
@@ -183,13 +183,13 @@ public class UserServiceTest {
 
     @Test
     void testLogin() {
-        Optional<User> optionalUser = userRepository.findByNameAndPass(NAME, PASS);
+        Optional<User> optionalUser = userRepository.findByNameAndHashedPass(NAME, PASS);
         assertTrue(optionalUser.isPresent());
 
         User loggedInUser = userService.login(NAME, PASS);
         assertEquals(loggedInUser, user);
 
-        Optional<User> optionalUserNot = userRepository.findByNameAndPass(NAME_NOT, PASS_NOT);
+        Optional<User> optionalUserNot = userRepository.findByNameAndHashedPass(NAME_NOT, PASS_NOT);
         assertTrue(optionalUserNot.isEmpty());
 
         User loggedInUserNot = userService.login(NAME_NOT, PASS_NOT);
@@ -240,8 +240,6 @@ public class UserServiceTest {
         assertTrue(userService.updateBooking(updatedBooking, bookingRepository));
         verify(bookingRepository).save(updatedBooking);
     }
-
-
 
     @Test
     void testAddGuest() {

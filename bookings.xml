@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bookings>
+    <booking>
+        <checkInDate>2021-06-01T00:00:00+03:00</checkInDate>
+        <checkOutDate>2021-06-05T00:00:00+03:00</checkOutDate>
+        <id>1</id>
+        <isPaid>false</isPaid>
+        <total>400.0</total>
+        <userId>1</userId>
+    </booking>
+    <booking>
+        <checkInDate>2013-12-21T00:00:00+02:00</checkInDate>
+        <checkOutDate>2021-12-30T00:00:00+02:00</checkOutDate>
+        <id>2</id>
+        <isPaid>false</isPaid>
+        <total>530.0</total>
+        <userId>2</userId>
+    </booking>
+    <booking>
+        <checkInDate>2023-03-05T00:00:00+02:00</checkInDate>
+        <checkOutDate>2023-03-05T00:00:00+02:00</checkOutDate>
+        <id>3</id>
+        <isPaid>false</isPaid>
+        <total>700.0</total>
+        <userId>1</userId>
+    </booking>
+    <booking>
+        <checkInDate>2024-09-14T00:00:00+03:00</checkInDate>
+        <checkOutDate>2024-09-24T00:00:00+03:00</checkOutDate>
+        <id>4</id>
+        <isPaid>false</isPaid>
+        <total>950.0</total>
+        <userId>2</userId>
+    </booking>
+    <booking>
+        <checkInDate>2022-02-03T00:00:00+02:00</checkInDate>
+        <checkOutDate>2021-02-19T00:00:00+02:00</checkOutDate>
+        <id>5</id>
+        <isPaid>false</isPaid>
+        <total>1140.0</total>
+        <userId>1</userId>
+    </booking>
+</bookings>
